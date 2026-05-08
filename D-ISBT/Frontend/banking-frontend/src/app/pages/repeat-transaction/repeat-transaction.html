@@ -1,0 +1,26 @@
+<div class="page">
+  <button type="button" class="back-btn" (click)="goBack()">
+    ← Înapoi
+  </button>
+
+  <h2>Repetare tranzacție</h2>
+
+  <div class="card">
+    <label>ID tranzacție</label>
+
+    <input
+      type="number"
+      [(ngModel)]="data.transactionId"
+      name="transactionId"
+      placeholder="Ex: 33"
+    >
+
+    <button type="button" (click)="repeatTransaction()">
+      Repetă tranzacția
+    </button>
+
+    <p *ngIf="message" class="message">
+      {{ message }}
+    </p>
+  </div>
+</div>

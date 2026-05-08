@@ -1,0 +1,43 @@
+<h2>Transfer către alt cont</h2>
+
+<p *ngIf="message">{{ message }}</p>
+
+<form>
+  <label>Cont sursă</label>
+  <select [(ngModel)]="externalTransfer.fromIban" name="extFrom">
+    <option value="">Selectează</option>
+
+    <option
+      *ngFor="let acc of accounts"
+      [value]="acc.iban"
+      [disabled]="acc.status !== 'APPROVED'"
+    >
+      {{ acc.iban }} - {{ acc.balance }} {{ acc.currency }}
+    </option>
+  </select>
+
+  <label>IBAN destinație</label>
+  <input
+    type="text"
+    [(ngModel)]="externalTransfer.toIban"
+    name="extTo"
+    placeholder="RO49..."
+  >
+
+  <label>Suma</label>
+  <input type="number" [(ngModel)]="externalTransfer.amount" name="extAmount">
+
+  <label>Monedă</label>
+  <select [(ngModel)]="externalTransfer.currency" name="extCurrency">
+    <option value="RON">RON</option>
+    <option value="EUR">EUR</option>
+    <option value="USD">USD</option>
+  </select>
+
+  <label>Descriere</label>
+  <input type="text" [(ngModel)]="externalTransfer.description" name="extDescription">
+
+  <button type="button" (click)="transferToOtherAccount()">
+    Trimite transfer
+  </button>
+</form>

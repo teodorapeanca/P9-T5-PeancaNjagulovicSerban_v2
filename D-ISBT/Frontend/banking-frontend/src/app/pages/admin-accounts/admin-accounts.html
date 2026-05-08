@@ -1,0 +1,72 @@
+<div class="page-header">
+  <button type="button" routerLink="/admin-access">← Înapoi</button>
+  <button type="button" (click)="loadAccounts()">Reîncarcă</button>
+</div>
+
+<h2>Management conturi</h2>
+
+<p class="message" *ngIf="message">{{ message }}</p>
+
+<div class="filters-card">
+  <h3>Filtre</h3>
+
+  <div class="filters-grid">
+    <input placeholder="Account ID" [(ngModel)]="filter.accountId">
+    <input placeholder="Account UID" [(ngModel)]="filter.accountUid">
+    <input placeholder="User ID" [(ngModel)]="filter.userId">
+    <input placeholder="IBAN" [(ngModel)]="filter.iban">
+    <input placeholder="Monedă" [(ngModel)]="filter.currency">
+    <input placeholder="Sold" [(ngModel)]="filter.balance">
+    <input placeholder="Status" [(ngModel)]="filter.status">
+    <input placeholder="Limită zilnică" [(ngModel)]="filter.dailyLimit">
+  </div>
+
+  <div class="actions">
+    <button type="button" (click)="applyFilters()">Filtrează</button>
+    <button type="button" (click)="resetFilters()">Reset</button>
+  </div>
+</div>
+
+<div class="table-card" *ngIf="filteredAccounts.length > 0">
+  <table>
+    <tr>
+      <th>Account ID</th>
+      <th>Account UID</th>
+      <th>User ID</th>
+      <th>IBAN</th>
+      <th>Monedă</th>
+      <th>Sold</th>
+      <th>Status</th>
+      <th>Limită zilnică</th>
+      <th>Creat la</th>
+      <th>Actualizat la</th>
+      <th>Acțiuni</th>
+    </tr>
+
+    <tr *ngFor="let acc of filteredAccounts">
+      <td>{{ acc.accountId }}</td>
+      <td>{{ acc.accountUid }}</td>
+      <td>{{ acc.userId }}</td>
+      <td>{{ acc.iban }}</td>
+      <td>{{ acc.currency }}</td>
+      <td>{{ acc.balance }}</td>
+      <td>
+        <span class="status" [class.pending]="acc.status === 'PENDING'" [class.approved]="acc.status === 'APPROVED'" [class.inactive]="acc.status === 'DEACTIVATED'">
+          {{ acc.status }}
+        </span>
+      </td>
+      <td>{{ acc.dailyLimit }}</td>
+      <td>{{ acc.createdAt }}</td>
+      <td>{{ acc.updatedAt }}</td>
+      <td class="row-actions">
+       <button *ngIf="acc.status === 'PENDING_APPROVAL'" (click)="approveAccount(acc)">Activează </button>
+        <button *ngIf="acc.status === 'APPROVED' || acc.status === 'REACTIVATED'" type="button" (click)="deactivateAccount(acc)">Dezactivează</button>
+        <button *ngIf="acc.status === 'DEACTIVATED'" type="button" (click)="reactivateAccount(acc)">Reactivează</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p *ngIf="filteredAccounts.length === 0 && !message">
+  Nu există conturi pentru filtrele selectate.
+</p>

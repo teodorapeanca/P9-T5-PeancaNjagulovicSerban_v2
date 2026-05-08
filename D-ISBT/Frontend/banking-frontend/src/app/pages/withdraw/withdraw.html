@@ -1,0 +1,21 @@
+<h2>Retragere</h2>
+
+<button routerLink="/dashboard">Dashboard Client</button>
+
+<form>
+  <label>Account ID</label>
+  <input type="number" [(ngModel)]="data.accountId" name="accountId">
+
+  <label>Suma</label>
+  <input type="number" [(ngModel)]="data.amount" name="amount">
+
+  <label>Monedă</label>
+  <input [(ngModel)]="data.currency" name="currency">
+
+  <label>Descriere</label>
+  <input [(ngModel)]="data.description" name="description">
+
+  <button type="button" (click)="submit()">Retrage</button>
+</form>
+
+<p *ngIf="message">{{ message }}</p>

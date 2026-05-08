@@ -1,0 +1,48 @@
+<h2>Transfer între conturile proprii</h2>
+
+<p *ngIf="message">{{ message }}</p>
+
+<form>
+  <label>Cont sursă</label>
+  <select [(ngModel)]="ownTransfer.fromIban" name="ownFrom">
+    <option value="">Selectează</option>
+
+    <option
+      *ngFor="let acc of accounts"
+      [value]="acc.iban"
+      [disabled]="acc.status !== 'APPROVED'"
+    >
+      {{ acc.iban }} - {{ acc.balance }} {{ acc.currency }}
+    </option>
+  </select>
+
+  <label>Cont destinație</label>
+  <select [(ngModel)]="ownTransfer.toIban" name="ownTo">
+    <option value="">Selectează</option>
+
+    <option
+      *ngFor="let acc of accounts"
+      [value]="acc.iban"
+      [disabled]="acc.status !== 'APPROVED' || acc.iban === ownTransfer.fromIban"
+    >
+      {{ acc.iban }} - {{ acc.balance }} {{ acc.currency }}
+    </option>
+  </select>
+
+  <label>Suma</label>
+  <input type="number" [(ngModel)]="ownTransfer.amount" name="ownAmount">
+
+  <label>Monedă</label>
+  <select [(ngModel)]="ownTransfer.currency" name="ownCurrency">
+    <option value="RON">RON</option>
+    <option value="EUR">EUR</option>
+    <option value="USD">USD</option>
+  </select>
+
+  <label>Descriere</label>
+  <input type="text" [(ngModel)]="ownTransfer.description" name="ownDescription">
+
+  <button type="button" (click)="transferOwnAccounts()">
+    Trimite transfer
+  </button>
+</form>

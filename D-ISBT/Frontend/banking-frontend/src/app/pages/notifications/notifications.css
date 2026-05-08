@@ -1,0 +1,89 @@
+.page {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  min-height: 100vh;
+}
+
+.back-btn {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+button:hover {
+  background: #eef2ff;
+}
+
+.settings-card,
+.notifications-card {
+  background: white;
+  padding: 22px;
+  border-radius: 16px;
+  margin-bottom: 22px;
+  max-width: 900px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+select {
+  display: block;
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+select:disabled {
+  background: #e5e7eb;
+}
+
+.notification-item {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.notification-item:hover {
+  background: #f9fafb;
+}
+
+.notification-item.unread {
+  font-weight: bold;
+  background: #fff7ed;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.message {
+  font-weight: bold;
+  color: #b45309;
+}
+
+.hint {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.empty {
+  margin-top: 14px;
+  color: #6b7280;
+}

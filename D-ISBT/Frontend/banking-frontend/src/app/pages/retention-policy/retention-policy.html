@@ -1,0 +1,51 @@
+<div class="page">
+  <button type="button" class="back-btn" (click)="goBack()">
+    ← Înapoi
+  </button>
+
+  <h2>Politici de retenție</h2>
+
+  <p *ngIf="message" class="message">{{ message }}</p>
+
+  <div class="card" *ngIf="policy">
+    <h3>Politica actuală</h3>
+
+    <p>
+      <strong>Număr minim zile retenție:</strong>
+      {{ policy.minimumRetentionDays }}
+    </p>
+
+    <p>
+      <strong>Număr curent zile retenție:</strong>
+      {{ policy.currentRetentionDays }}
+    </p>
+
+    <div *ngIf="isAdminMode" class="admin-actions">
+      <button type="button" (click)="setViewMode()">
+        Vizualizare
+      </button>
+
+      <button type="button" (click)="setEditMode()">
+        Setare
+      </button>
+    </div>
+
+    <div *ngIf="isAdminMode && editMode" class="edit-box">
+      <label>Setare zile retenție</label>
+
+      <input
+        type="number"
+        [(ngModel)]="days"
+        min="1"
+      >
+
+      <button type="button" (click)="savePolicy()">
+        Salvează politica
+      </button>
+    </div>
+
+    <p *ngIf="!isAdminMode" class="info">
+      Această politică stabilește perioada de păstrare a tranzacțiilor în sistem.
+    </p>
+  </div>
+</div>

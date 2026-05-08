@@ -1,0 +1,88 @@
+<h2>Istoric tranzacții</h2>
+
+<button type="button" (click)="loadHistory()" [disabled]="loading">
+  {{ loading ? 'Se încarcă...' : 'Reîncarcă istoricul' }}
+</button>
+
+<button type="button" (click)="exportExcel()">
+  Export Excel
+</button>
+
+<hr>
+
+<h3>Filtrare</h3>
+
+<form>
+  <label>From IBAN</label>
+  <select name="fromIban" [(ngModel)]="filter.fromIban">
+    <option value="">Toate</option>
+    <option *ngFor="let iban of fromIbans" [value]="iban">
+      {{ iban }}
+    </option>
+  </select>
+
+  <label>To IBAN</label>
+  <select name="toIban" [(ngModel)]="filter.toIban">
+    <option value="">Toate</option>
+    <option *ngFor="let iban of toIbans" [value]="iban">
+      {{ iban }}
+    </option>
+  </select>
+
+  <label>Data de la</label>
+  <input type="datetime-local" name="dateFrom" [(ngModel)]="filter.dateFrom">
+
+  <label>Data până la</label>
+  <input type="datetime-local" name="dateTo" [(ngModel)]="filter.dateTo">
+<label>Tip tranzacție</label>
+<input type="text" name="type" placeholder="TRANSFER / SERVICE_PAYMENT" [(ngModel)]="filter.type">
+
+<label>Sumă minimă</label>
+<input type="number" name="minAmount" [(ngModel)]="filter.minAmount">
+
+<label>Sumă maximă</label>
+<input type="number" name="maxAmount" [(ngModel)]="filter.maxAmount">
+  <button type="button" (click)="applyFilters()">
+    Aplică filtre
+  </button>
+
+  <button type="button" (click)="resetFilters()">
+    Reset
+  </button>
+</form>
+
+<hr>
+
+<table border="1" *ngIf="filteredTransactions.length > 0">
+  <tr>
+    <th>ID</th>
+    <th>From IBAN</th>
+    <th>To IBAN</th>
+    <th>Tip</th>
+    <th>Sumă</th>
+    <th>Monedă</th>
+    <th>Comision</th>
+    <th>Status</th>
+    <th>AML</th>
+    <th>Descriere</th>
+    <th>Data</th>
+  </tr>
+
+  <tr *ngFor="let t of filteredTransactions">
+    <td>{{ t.transactionId }}</td>
+    <td>{{ t.fromAccountIban || '-' }}</td>
+    <td>{{ t.toAccountIban || '-' }}</td>
+    <td>{{ t.type }}</td>
+    <td>{{ t.amount }}</td>
+    <td>{{ t.currency }}</td>
+    <td>{{ t.feeAmount }}</td>
+    <td>{{ t.status }}</td>
+    <td>{{ t.amlFlag ? 'DA' : 'NU' }}</td>
+    <td>{{ t.description }}</td>
+    <td>{{ t.createdAt }}</td>
+  </tr>
+</table>
+
+<p *ngIf="filteredTransactions.length === 0">
+  Nu există tranzacții pentru filtrele selectate.
+</p>

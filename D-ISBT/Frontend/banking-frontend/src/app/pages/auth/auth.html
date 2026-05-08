@@ -1,0 +1,121 @@
+<h2>Autentificare</h2>
+
+<div>
+  <button type="button" (click)="setTab('login')">Login</button>
+  <button type="button" (click)="setTab('register')">Register</button>
+</div>
+
+<hr>
+
+<!-- LOGIN -->
+<div *ngIf="activeTab === 'login' && !show2FA">
+
+  <label>Client Identifier</label>
+  <input [(ngModel)]="clientIdentifier">
+
+  <label>Password</label>
+  <input type="password" [(ngModel)]="password">
+
+  <button type="button" (click)="login()">Login</button>
+
+  <br><br>
+
+  <a href="#" (click)="showForgot = true; showReset = false; $event.preventDefault()">
+    Forgot password?
+  </a>
+
+  <p *ngIf="message">{{ message }}</p>
+
+</div>
+
+<!-- FORGOT PASSWORD -->
+<div *ngIf="showForgot && activeTab === 'login' && !show2FA">
+
+  <h3>Resetare parolă</h3>
+
+  <label>Email</label>
+  <input [(ngModel)]="forgotEmail">
+
+  <button type="button" (click)="forgotPassword()">
+    Trimite token resetare
+  </button>
+
+</div>
+
+<!-- RESET PASSWORD -->
+<div *ngIf="showReset && activeTab === 'login' && !show2FA">
+
+  <h3>Setare parolă nouă</h3>
+
+  <label>Client Identifier</label>
+  <input [(ngModel)]="resetForm.clientIdentifier">
+
+  <label>Token</label>
+  <input [(ngModel)]="resetForm.token">
+
+  <label>Parolă nouă</label>
+  <input type="password" [(ngModel)]="resetForm.newPassword">
+
+  <label>Confirmă parola nouă</label>
+  <input type="password" [(ngModel)]="resetForm.confirmNewPassword">
+
+  <button type="button" (click)="resetPassword()">
+    Resetează parola
+  </button>
+
+</div>
+
+<!-- 2FA -->
+<div *ngIf="show2FA">
+
+  <h3>Cod 2FA</h3>
+
+  <input [(ngModel)]="code">
+
+  <button type="button" (click)="verify2FA()">Verifică</button>
+
+  <p *ngIf="twoFactorCode">
+    Cod (test): {{ twoFactorCode }}
+  </p>
+
+  <p *ngIf="message">{{ message }}</p>
+
+</div>
+
+<!-- REGISTER -->
+<div *ngIf="activeTab === 'register'">
+
+  <label>Nume</label>
+  <input [(ngModel)]="registerForm.firstName">
+
+  <label>Prenume</label>
+  <input [(ngModel)]="registerForm.lastName">
+
+  <label>Email</label>
+  <input [(ngModel)]="registerForm.email">
+
+  <label>Telefon</label>
+  <input [(ngModel)]="registerForm.phone">
+
+  <label>Adresă</label>
+  <input [(ngModel)]="registerForm.address">
+
+  <label>Data nașterii</label>
+  <input type="date" [(ngModel)]="registerForm.dateOfBirth">
+
+  <label>Parolă</label>
+  <input type="password" [(ngModel)]="registerForm.password">
+
+  <label>Confirmă parola</label>
+  <input type="password" [(ngModel)]="confirmPassword">
+
+  <label>
+    <input type="checkbox" [(ngModel)]="registerForm.acceptedTerms">
+    Accept termenii
+  </label>
+
+  <button type="button" (click)="register()">Register</button>
+
+  <p *ngIf="message">{{ message }}</p>
+
+</div>

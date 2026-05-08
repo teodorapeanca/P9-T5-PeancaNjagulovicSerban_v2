@@ -1,0 +1,83 @@
+.page {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  min-height: 100vh;
+}
+
+.back-btn {
+  margin-bottom: 20px;
+}
+
+.filters {
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+input {
+  padding: 9px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+button {
+  padding: 9px 12px;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+button:hover {
+  background: #eef2ff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 9px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+th {
+  background: #f9fafb;
+}
+
+.hash-cell {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.valid {
+  color: green;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.invalid {
+  color: red;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.message {
+  font-weight: bold;
+  color: #b45309;
+}

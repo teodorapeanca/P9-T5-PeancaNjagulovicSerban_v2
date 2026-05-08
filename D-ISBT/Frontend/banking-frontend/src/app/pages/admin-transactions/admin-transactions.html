@@ -1,0 +1,77 @@
+<div class="page-header">
+  <button type="button" routerLink="/admin-access">← Înapoi</button>
+  <button type="button" (click)="loadTransactions()">Reîncarcă</button>
+</div>
+
+<h2>Management tranzacții</h2>
+
+<p class="message" *ngIf="message">{{ message }}</p>
+
+<div class="filters-card">
+  <h3>Filtre</h3>
+
+  <div class="filters-grid">
+    <input placeholder="User ID" [(ngModel)]="filter.userId">
+    <input placeholder="From IBAN / From Account ID" [(ngModel)]="filter.fromIban">
+    <input placeholder="To IBAN / To Account ID" [(ngModel)]="filter.toIban">
+    <input placeholder="Valută" [(ngModel)]="filter.currency">
+    <input placeholder="Tip tranzacție" [(ngModel)]="filter.type">
+
+    <select [(ngModel)]="filter.amlFlag">
+      <option value="">AML toate</option>
+      <option value="true">AML DA</option>
+      <option value="false">AML NU</option>
+    </select>
+
+    <input type="number" placeholder="Sumă minimă" [(ngModel)]="filter.minAmount">
+    <input type="number" placeholder="Sumă maximă" [(ngModel)]="filter.maxAmount">
+
+    <input type="datetime-local" [(ngModel)]="filter.dateFrom">
+    <input type="datetime-local" [(ngModel)]="filter.dateTo">
+  </div>
+
+  <div class="actions">
+    <button type="button" (click)="applyFilters()">Filtrează</button>
+    <button type="button" (click)="resetFilters()">Reset</button>
+  </div>
+</div>
+
+<div class="table-card" *ngIf="filteredTransactions.length > 0">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>User ID</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Provider</th>
+      <th>Tip</th>
+      <th>Sumă</th>
+      <th>Monedă</th>
+      <th>Comision</th>
+      <th>Status</th>
+      <th>AML</th>
+      <th>Descriere</th>
+      <th>Data</th>
+    </tr>
+
+    <tr *ngFor="let t of filteredTransactions" [class.aml-row]="t.amlFlag">
+      <td>{{ t.transactionId }}</td>
+      <td>{{ t.initiatedByUserId }}</td>
+      <td>{{ t.fromAccountIban || t.fromIban || t.fromAccountId || '-' }}</td>
+      <td>{{ t.toAccountIban || t.toIban || t.toAccountId || '-' }}</td>
+      <td>{{ t.providerId || '-' }}</td>
+      <td>{{ t.type }}</td>
+      <td>{{ t.amount }}</td>
+      <td>{{ t.currency }}</td>
+      <td>{{ t.feeAmount }}</td>
+      <td>{{ t.status }}</td>
+      <td>{{ t.amlFlag ? 'DA' : 'NU' }}</td>
+      <td>{{ t.description }}</td>
+      <td>{{ t.createdAt }}</td>
+    </tr>
+  </table>
+</div>
+
+<p *ngIf="filteredTransactions.length === 0 && !message">
+  Nu există tranzacții pentru filtrele selectate.
+</p>

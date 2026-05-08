@@ -1,0 +1,69 @@
+<div class="page">
+  <button type="button" class="back-btn" (click)="goBack()">
+    ← Înapoi
+  </button>
+
+  <h2>Notificări</h2>
+
+  <p class="message" *ngIf="message">{{ message }}</p>
+
+  <div class="settings-card">
+    <h3>Preferințe notificări</h3>
+
+    <label class="toggle-row">
+      <input
+        type="checkbox"
+        [(ngModel)]="notificationsEnabled"
+        (change)="toggleNotifications()"
+      >
+      Activare notificări
+    </label>
+
+    <label>Nivel notificare</label>
+    <select
+      [(ngModel)]="notificationLevel"
+      [disabled]="!notificationsEnabled"
+      (change)="updateNotificationLevel()"
+    >
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+
+    <p *ngIf="!notificationsEnabled" class="hint">
+      Setarea nivelului este disponibilă doar când notificările sunt activate.
+    </p>
+  </div>
+
+  <div class="notifications-card">
+    <h3>Notificările mele</h3>
+
+    <button type="button" (click)="loadNotifications()">
+      Reîncarcă
+    </button>
+
+    <div *ngIf="notifications.length === 0" class="empty">
+      Nu există notificări.
+    </div>
+
+    <div
+      class="notification-item"
+      *ngFor="let n of notifications"
+      [class.unread]="!n.isRead"
+      (click)="markAsRead(n)"
+    >
+      <div class="notification-header">
+        <span>{{ n.title }}</span>
+        <span>{{ n.createdAt }}</span>
+      </div>
+
+      <p>{{ n.message }}</p>
+
+      <small>
+        Tip: {{ n.type }} |
+        Canal: {{ n.channel }} |
+        Status: {{ n.isRead ? 'Citită' : 'Necitită' }}
+      </small>
+    </div>
+  </div>
+</div>

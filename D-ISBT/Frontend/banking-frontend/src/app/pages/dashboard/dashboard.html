@@ -1,0 +1,67 @@
+<div class="top-bar">
+  <button type="button" (click)="logout()">Logout</button>
+</div>
+
+<h2>Dashboard client</h2>
+
+<div class="dashboard-menu">
+
+  <button routerLink="/my-profile">
+  Datele mele
+  </button>
+
+  <button routerLink="/accounts">
+    Conturile mele
+  </button>
+
+  <button routerLink="/create-account">
+    Creează cont nou
+  </button>
+
+  <div class="dropdown">
+    <button class="dropbtn">
+      Tranzacții ▼
+    </button>
+
+    <div class="dropdown-content">
+      <button routerLink="/own-transfer">
+        Transfer între conturile proprii
+      </button>
+
+      <button routerLink="/external-transfer">
+        Transfer către alt cont
+      </button>
+
+      <button routerLink="/service-payment">
+        Plată furnizori
+      </button>
+
+      <button routerLink="/deposit">
+        Depuneri
+      </button>
+
+      <button routerLink="/withdraw">
+        Retrageri
+      </button>
+      <button routerLink="/repeat-transaction">
+       Repetare tranzacție
+      </button>
+      <button routerLink="/retention-policy">
+        Politici de retenție
+      </button>
+
+      <button routerLink="/transaction-help">
+         Help
+      </button>
+
+    </div>
+  </div>
+
+  <button routerLink="/history">
+    Vezi istoric tranzacții
+  </button>
+  <button routerLink="/notifications">
+  Notificări
+</button>
+
+</div>

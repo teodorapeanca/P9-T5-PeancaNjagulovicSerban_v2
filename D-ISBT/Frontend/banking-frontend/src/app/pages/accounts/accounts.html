@@ -1,0 +1,25 @@
+<h2>Conturile mele</h2>
+
+<p *ngIf="message">{{ message }}</p>
+
+<table border="1" *ngIf="accounts && accounts.length > 0">
+  <tr>
+    <th>ID</th>
+    <th>IBAN</th>
+    <th>Sold</th>
+    <th>Monedă</th>
+    <th>Status</th>
+  </tr>
+
+  <tr *ngFor="let account of accounts">
+    <td>{{ account.accountId }}</td>
+    <td>{{ account.iban }}</td>
+    <td>{{ account.balance }}</td>
+    <td>{{ account.currency }}</td>
+    <td>{{ account.status }}</td>
+  </tr>
+</table>
+
+<p *ngIf="(!accounts || accounts.length === 0) && !message">
+  Nu există conturi.
+</p>

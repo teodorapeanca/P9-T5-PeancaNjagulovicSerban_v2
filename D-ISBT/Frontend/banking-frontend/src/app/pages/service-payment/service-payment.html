@@ -1,0 +1,44 @@
+<h2>Plată furnizori</h2>
+
+<p *ngIf="message">{{ message }}</p>
+
+<form>
+  <label>Cont sursă</label>
+  <select [(ngModel)]="servicePaymentData.fromIban" name="servFrom">
+    <option value="">Selectează</option>
+
+    <option
+      *ngFor="let acc of accounts"
+      [value]="acc.iban"
+      [disabled]="acc.status !== 'APPROVED'"
+    >
+      {{ acc.iban }} - {{ acc.balance }} {{ acc.currency }}
+    </option>
+  </select>
+
+  <label>Furnizor</label>
+  <select [(ngModel)]="servicePaymentData.providerId" name="provider">
+    <option [ngValue]="0">Selectează</option>
+
+    <option *ngFor="let p of providers" [ngValue]="p.providerId">
+      {{ p.providerName }}
+    </option>
+  </select>
+
+  <label>Suma</label>
+  <input type="number" [(ngModel)]="servicePaymentData.amount" name="servAmount">
+
+  <label>Monedă</label>
+  <select [(ngModel)]="servicePaymentData.currency" name="servCurrency">
+    <option value="RON">RON</option>
+    <option value="EUR">EUR</option>
+    <option value="USD">USD</option>
+  </select>
+
+  <label>Descriere</label>
+  <input type="text" [(ngModel)]="servicePaymentData.description" name="servDescription">
+
+  <button type="button" (click)="payService()">
+    Plătește
+  </button>
+</form>

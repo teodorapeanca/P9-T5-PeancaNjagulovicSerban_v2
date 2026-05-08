@@ -1,0 +1,49 @@
+<div class="page">
+
+  <button class="back-btn" (click)="goBack()">
+    ← Înapoi
+  </button>
+
+  <div class="card">
+
+    <h2>Notificări mentenanță</h2>
+
+    <p class="subtitle">
+      Trimite notificări clienților afectați de lucrările de mentenanță.
+    </p>
+
+    <label>Titlu notificare</label>
+
+    <input
+      type="text"
+      [(ngModel)]="title"
+      placeholder="Ex: Mentenanță platformă online"
+    >
+
+    <label>Mesaj</label>
+
+    <textarea
+      rows="6"
+      [(ngModel)]="message"
+      placeholder="Introduceți mesajul..."
+    ></textarea>
+
+    <button
+      class="send-btn"
+      (click)="sendNotification()"
+      [disabled]="loading"
+    >
+      {{ loading ? 'Se trimite...' : 'Trimite notificări' }}
+    </button>
+
+    <p class="success" *ngIf="successMessage">
+      {{ successMessage }}
+    </p>
+
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
+  </div>
+
+</div>

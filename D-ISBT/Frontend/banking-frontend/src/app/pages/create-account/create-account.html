@@ -1,0 +1,22 @@
+<h2>Creează cont nou</h2>
+
+<p *ngIf="message">{{ message }}</p>
+
+<form>
+  <label>Monedă</label>
+  <select [(ngModel)]="newAccount.currency" name="currency">
+    <option value="RON">RON</option>
+    <option value="EUR">EUR</option>
+    <option value="USD">USD</option>
+  </select>
+
+  <label>Sold inițial</label>
+  <input type="number" [(ngModel)]="newAccount.balance" name="balance">
+
+  <label>Limită zilnică</label>
+  <input type="number" [(ngModel)]="newAccount.dailyLimit" name="dailyLimit">
+
+  <button type="button" (click)="createAccount()">
+    Trimite cerere cont
+  </button>
+</form>

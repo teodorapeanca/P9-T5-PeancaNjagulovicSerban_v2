@@ -1,0 +1,64 @@
+<div class="page">
+  <button type="button" class="back-btn" (click)="goBack()">
+    ← Înapoi
+  </button>
+
+  <h2>Jurnale audit</h2>
+
+  <p *ngIf="message" class="message">{{ message }}</p>
+
+  <div class="filters">
+    <input type="datetime-local" [(ngModel)]="filter.dateFrom">
+    <input type="datetime-local" [(ngModel)]="filter.dateTo">
+
+    <input type="text" placeholder="Acțiune" [(ngModel)]="filter.action">
+    <input type="text" placeholder="Entitate" [(ngModel)]="filter.entityType">
+    <input type="number" placeholder="User ID" [(ngModel)]="filter.userId">
+
+    <button type="button" (click)="applyFilters()">Filtrează</button>
+    <button type="button" (click)="resetFilters()">Reset</button>
+    <button type="button" (click)="exportCsv()">Export CSV</button>
+  </div>
+
+  <table *ngIf="logs.length > 0">
+    <tr>
+      <th>ID</th>
+      <th>User ID</th>
+      <th>Acțiune</th>
+      <th>Entitate</th>
+      <th>Entity ID</th>
+      <th>IP</th>
+      <th>Hash</th>
+      <th>Data</th>
+      <th>Verificare hash</th>
+    </tr>
+
+    <tr *ngFor="let log of logs">
+      <td>{{ log.auditId }}</td>
+      <td>{{ log.userId }}</td>
+      <td>{{ log.action }}</td>
+      <td>{{ log.entityType }}</td>
+      <td>{{ log.entityId }}</td>
+      <td>{{ log.ipAddress || '-' }}</td>
+      <td class="hash-cell">{{ log.hashValue }}</td>
+      <td>{{ log.createdAt }}</td>
+      <td>
+        <button type="button" (click)="verifyHash(log)">
+          Verifică
+        </button>
+
+        <span
+          *ngIf="log.hashStatus"
+          [class.valid]="log.hashStatus === 'VALID'"
+          [class.invalid]="log.hashStatus !== 'VALID'"
+        >
+          {{ log.hashStatus }}
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <p *ngIf="logs.length === 0 && !message">
+    Nu există jurnale audit.
+  </p>
+</div>

@@ -1,0 +1,55 @@
+.page {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  min-height: 100vh;
+}
+
+.back-btn {
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 850px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+button:hover {
+  background: #eef2ff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 18px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+th {
+  background: #f9fafb;
+}
+
+.message {
+  font-weight: bold;
+  color: #b45309;
+}

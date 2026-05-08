@@ -1,0 +1,39 @@
+<h2>Management clienți</h2>
+
+<button type="button" routerLink="/admin-access">
+  Înapoi
+</button>
+
+<button type="button" (click)="loadUsers()">
+  Reîncarcă lista
+</button>
+
+<p *ngIf="message">{{ message }}</p>
+
+<table border="1" *ngIf="users.length > 0">
+  <tr>
+    <th>User ID</th>
+    <th>Client Identifier</th>
+    <th>Email</th>
+    <th>Telefon</th>
+    <th>Nume</th>
+    <th>Prenume</th>
+    <th>Adresă</th>
+    <th>Activ</th>
+    <th>Email confirmat</th>
+    <th>Creat la</th>
+  </tr>
+
+  <tr *ngFor="let user of users">
+    <td>{{ user.userId }}</td>
+    <td>{{ user.clientIdentifier }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.phone }}</td>
+    <td>{{ user.lastName }}</td>
+    <td>{{ user.firstName }}</td>
+    <td>{{ user.address }}</td>
+    <td>{{ user.isActive ? 'DA' : 'NU' }}</td>
+    <td>{{ user.emailConfirmed ? 'DA' : 'NU' }}</td>
+    <td>{{ user.createdAt }}</td>
+  </tr>
+</table>

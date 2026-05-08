@@ -1,0 +1,65 @@
+<div class="page">
+  <button type="button" class="back-btn" (click)="goBack()">
+    ← Înapoi
+  </button>
+
+  <h2>Help tranzacții</h2>
+
+  <p *ngIf="message" class="message">{{ message }}</p>
+
+  <div class="card" *ngIf="helpData">
+    <h3>{{ helpData.module }}</h3>
+
+    <h4>Operațiuni suportate</h4>
+    <ul>
+      <li *ngFor="let op of helpData.supportedOperations">
+        {{ op }}
+      </li>
+    </ul>
+
+    <h4>Valute suportate</h4>
+    <ul>
+      <li *ngFor="let currency of helpData.supportedCurrencies">
+        {{ currency }}
+      </li>
+    </ul>
+
+    <h4>Comisioane</h4>
+    <table>
+      <tr>
+        <th>Tip</th>
+        <th>Comision</th>
+      </tr>
+      <tr>
+        <td>Depunere</td>
+        <td>{{ helpData.commissions?.deposit }}</td>
+      </tr>
+      <tr>
+        <td>Retragere</td>
+        <td>{{ helpData.commissions?.withdrawal }}</td>
+      </tr>
+      <tr>
+        <td>Transfer aceeași valută</td>
+        <td>{{ helpData.commissions?.transferSameCurrency }}</td>
+      </tr>
+      <tr>
+        <td>Transfer valute diferite</td>
+        <td>{{ helpData.commissions?.transferCrossCurrency }}</td>
+      </tr>
+      <tr>
+        <td>Plată furnizori</td>
+        <td>{{ helpData.commissions?.servicePayment }}</td>
+      </tr>
+    </table>
+
+    <h4>Regulă AML</h4>
+    <p>{{ helpData.amlRule }}</p>
+
+    <h4>Note</h4>
+    <ul>
+      <li *ngFor="let note of helpData.notes">
+        {{ note }}
+      </li>
+    </ul>
+  </div>
+</div>

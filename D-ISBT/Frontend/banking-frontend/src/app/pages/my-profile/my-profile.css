@@ -1,0 +1,61 @@
+.page {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  min-height: 100vh;
+}
+
+.back-btn {
+  margin-bottom: 20px;
+}
+
+.profile-card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 700px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: center;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+input:disabled {
+  background: #f3f4f6;
+}
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+button:hover {
+  background: #eef2ff;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.message {
+  font-weight: bold;
+  color: #b45309;
+}

@@ -1,0 +1,85 @@
+<div class="page">
+  <button type="button" class="back-btn" (click)="goBack()">
+    ← Înapoi
+  </button>
+
+  <h2>Datele mele</h2>
+
+  <p class="message" *ngIf="message">{{ message }}</p>
+
+  <div class="profile-card" *ngIf="user">
+    <div class="row">
+      <strong>User ID:</strong>
+      <span>{{ user.userId }}</span>
+    </div>
+
+    <div class="row">
+      <strong>Client Identifier:</strong>
+      <span>{{ user.clientIdentifier }}</span>
+    </div>
+
+    <div class="row">
+      <strong>Email:</strong>
+      <span>{{ user.email }}</span>
+    </div>
+
+    <div class="row">
+      <strong>Prenume:</strong>
+      <input [(ngModel)]="user.firstName" [disabled]="!editMode">
+    </div>
+
+    <div class="row">
+      <strong>Nume:</strong>
+      <input [(ngModel)]="user.lastName" [disabled]="!editMode">
+    </div>
+
+    <div class="row">
+      <strong>Telefon:</strong>
+      <input [(ngModel)]="user.phone" [disabled]="!editMode">
+    </div>
+
+    <div class="row">
+      <strong>Adresă:</strong>
+      <input [(ngModel)]="user.address" [disabled]="!editMode">
+    </div>
+
+    <div class="row">
+      <strong>Data nașterii:</strong>
+      <span>{{ user.dateOfBirth }}</span>
+    </div>
+
+    <div class="row">
+      <strong>Notification Level:</strong>
+      <span>{{ user.notificationLevel }}</span>
+    </div>
+
+    <div class="row">
+      <strong>Notifications Enabled:</strong>
+      <span>{{ user.notificationsEnabled ? 'DA' : 'NU' }}</span>
+    </div>
+
+    <div class="row">
+      <strong>Creat la:</strong>
+      <span>{{ user.createdAt }}</span>
+    </div>
+
+    <div class="row">
+      <strong>Actualizat la:</strong>
+      <span>{{ user.updatedAt }}</span>
+    </div>
+
+    <div class="actions">
+      <button type="button" *ngIf="!editMode" (click)="enableEdit()">
+        Editează
+      </button>
+
+      <button type="button" *ngIf="editMode" (click)="save()">
+        Salvează
+      </button>
+
+      <button type="button" *ngIf="editMode" (click)="cancelEdit()">
+        Anulează
+      </button>
+    </div>
+  </div>
+</div>
